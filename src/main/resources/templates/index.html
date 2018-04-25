@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"/>
+    <title>Store</title>
+<body>
+<h1>Green Fox Fashion Web Store</h1>
+
+<table>
+    <tr>
+        <th>Item name</th>
+        <th>Manufacturer</th>
+        <th>Category</th>
+        <th>Size</th>
+        <th>Unit price</th>
+    </tr>
+    <tbody>
+    <tr th:each="cloth : ${clothes}" >
+        <td th:text="${cloth.itemName}"></td>
+        <td th:text="${cloth.manufacturer}"></td>
+        <td th:text="${cloth.category}"></td>
+        <td th:text="${cloth.size}"></td>
+        <td th:text="${cloth.unitPrice}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
