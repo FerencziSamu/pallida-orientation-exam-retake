@@ -34,5 +34,4 @@ public class Cloth {
   private float unitPrice;
   private Integer inStore;
 
-
 }
