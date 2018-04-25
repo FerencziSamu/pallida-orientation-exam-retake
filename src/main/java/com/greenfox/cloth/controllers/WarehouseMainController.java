@@ -27,12 +27,19 @@ public class WarehouseMainController {
     return "index";
   }
 
-  @PostMapping("/warehouse/summary")  
+  @PostMapping("/warehouse/summary")
   public String takesToSummary(@ModelAttribute(name = "cloth") Cloth cloth, Model model,
                                   @RequestParam(name = "quantity") int quantity) {
     model.addAttribute("cloth", cloth);
     model.addAttribute("quantity",quantity);
+    return "redirect:/warehouse/summary";
+  }
+
+  @GetMapping("/warehouse/summary")
+  public String loadsSummaryPage(@ModelAttribute(name = "cloth") Cloth cloth, Model model) {
+    model.addAttribute("cloth",cloth);
     return "summary";
   }
+
 
 }

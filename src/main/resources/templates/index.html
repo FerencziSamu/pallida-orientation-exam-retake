@@ -14,12 +14,12 @@
       th:action="@{takesToSummary}" method="post">
 <select>
     <option value="title">Select item name</option>
-    <option th:each="cloth : ${clothes}" value="itemName"
+    <option th:each="cloth : ${clothes}" th:value="${cloth.itemName}"
             th:text="${cloth.itemName}"></option>
 </select>
 <select>
     <option value="title">Select size</option>
-    <option th:each="cloth : ${clothes}" value="size"
+    <option th:each="cloth : ${clothes}" th:value="${cloth.size}"
             th:text="${cloth.size}">Select size
     </option>
 </select>
