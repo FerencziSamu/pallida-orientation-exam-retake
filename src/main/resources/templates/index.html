@@ -9,7 +9,14 @@
     <title>Store</title>
 <body>
 <h1>Green Fox Fashion Web Store</h1>
-
+<select>
+    <option value="item">Select item name</option>
+    <option th:each="cloth : ${clothes}" value="name" th:text="${cloth.itemName}"></option>
+</select>
+<select>
+    <option value="size">Select size</option>
+    <option value="size">Select size</option>
+</select>
 <table>
     <tr>
         <th>Item name</th>
