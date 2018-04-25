@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface ClothRepository extends CrudRepository<Cloth,Integer>{
   List<Cloth> findAll();
+  Cloth findFirstByItemName(String item);
 
 }
+

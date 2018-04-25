@@ -8,9 +8,10 @@
           crossorigin="anonymous"/>
     <title>Summary</title>
     <h1>Green Fox Fashion Web Store</h1>
+    <h2>Summary</h2>
 </head>
 <body>
-<table>
+<table border="1">
     <tr>
         <th>Item name</th>
         <th>Manufacturer</th>
@@ -20,15 +21,14 @@
     </tr>
     <tbody>
     <tr th:object="${cloth}">
-        <td th:text="${cloth.itemName}"></td>
-        <td th:text="${cloth.manufacturer}"></td>
-        <td th:text="${cloth.category}"></td>
+        <td th:text="*{itemName}"></td>
+        <td th:text="*{manufacturer}"></td>
+        <td th:text="*{category}"></td>
         <td th:text="${quantity}"></td>
-        <td th:text="${cloth.unitPrice}"></td>
+        <td th:text="${quantity} * *{unitPrice}"></td>
     </tr>
     </tbody>
 </table>
 <a href="/warehouse">Back to main</a>
-
 </body>
 </html>

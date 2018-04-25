@@ -10,28 +10,22 @@
     <title>Store</title>
 <body>
 <h1>Green Fox Fashion Web Store</h1>
-<form role="quantity"
-      th:action="@{takesToSummary}" method="post">
-<select>
-    <option value="title">Select item name</option>
-    <option th:each="cloth : ${clothes}" th:value="${cloth.itemName}"
-            th:text="${cloth.itemName}"></option>
-</select>
-<select>
-    <option value="title">Select size</option>
-    <option th:each="cloth : ${clothes}" th:value="${cloth.size}"
-            th:text="${cloth.size}">Select size
-    </option>
-</select>
-
-    <div class="form-group">
-        <input type="text" class="form-control"
-               placeholder="Quantity" id="quantity"
-               name="quantity">
-    </div>
-    <a th:href="'/warehouse/summary'"
-       type="button"
-       class="btn btn-xs btn-warning">GET TOTAL</a>
+<form action="#" th:action="@{/warehouse/summary}" method="post">
+    <select name="item">
+        <option value="title">Select item name</option>
+        <option th:each="cloth : ${uniqClothes}" th:value="${cloth}"
+                th:text="${cloth}"></option>
+    </select>
+    <select name="size">
+        <option value="title">Select size</option>
+        <option value="s">s</option>
+        <option value="m">m</option>
+        <option value="l">l</option>
+        <option value="xl">xl</option>
+        <option value="xxl">xxl</option>
+    </select>
+    <input type="number" name="quantity"/>
+    <input type="submit" value="GET TOTAL"/>
 </form>
 <table>
     <tr>

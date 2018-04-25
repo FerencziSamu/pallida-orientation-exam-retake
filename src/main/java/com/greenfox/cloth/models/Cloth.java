@@ -34,4 +34,12 @@ public class Cloth {
   private float unitPrice;
   private Integer inStore;
 
+  public String getItemName() {
+    return itemName;
+  }
+
+  public void setSize(String size) {
+    this.size = size;
+  }
+
 }

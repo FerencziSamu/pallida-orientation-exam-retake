@@ -1,6 +1,7 @@
 package com.greenfox.cloth.controllers;
 
 import com.greenfox.cloth.models.Cloth;
+import com.greenfox.cloth.models.Summary;
 import com.greenfox.cloth.repositories.ClothRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class WarehouseMainController {
@@ -23,23 +26,27 @@ public class WarehouseMainController {
   @GetMapping("/warehouse")
   public String renderIndexPage(@ModelAttribute(name = "cloth") Cloth cloth, Model model) {
     model.addAttribute("clothes", clothRepository.findAll());
-    model.addAttribute("cloth", new Cloth());
+    model.addAttribute("uniqClothes", getUniqueCloth());
     return "index";
   }
 
   @PostMapping("/warehouse/summary")
-  public String takesToSummary(@ModelAttribute(name = "cloth") Cloth cloth, Model model,
-                                  @RequestParam(name = "quantity") int quantity) {
-    model.addAttribute("cloth", cloth);
-    model.addAttribute("quantity",quantity);
-    return "redirect:/warehouse/summary";
+  public String takesToSummary(@ModelAttribute Summary summary, Model model) {
+    Cloth cloth = clothRepository.findFirstByItemName(summary.getItem());
+      cloth.setSize(summary.getSize());
+      model.addAttribute("cloth", cloth);
+      model.addAttribute("quantity", summary.getQuantity());
+      return "summary";
   }
 
-  @GetMapping("/warehouse/summary")
-  public String loadsSummaryPage(@ModelAttribute(name = "cloth") Cloth cloth, Model model) {
-    model.addAttribute("cloth",cloth);
-    return "summary";
+  private List<String> getUniqueCloth() {
+    return clothRepository
+        .findAll()
+        .stream()
+        .map(Cloth::getItemName)
+        .distinct()
+        .collect(Collectors.toList());
   }
-
 
 }
+
