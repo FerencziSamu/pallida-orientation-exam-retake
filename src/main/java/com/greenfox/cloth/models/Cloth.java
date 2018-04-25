@@ -32,7 +32,7 @@ public class Cloth {
   private String size;
 
   private float unitPrice;
-  private int inStore;
+  private Integer inStore;
 
 
 }
